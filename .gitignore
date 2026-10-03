@@ -216,3 +216,21 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ===== TouchFree =====
+# Poids des modèles (gérés par DVC, jamais dans Git)
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Sorties d'entraînement
+runs/
+mlruns/
+
+# Secrets (tokens DagsHub, mots de passe)
+.env
+
+# Frontend
+node_modules/
+frontend/dist/
