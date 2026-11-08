@@ -1,0 +1,27 @@
+data:
+  seed: 42
+  min_side: 512
+  max_per_user: 5
+  per_class: {train: 300, val: 60, test: 60}
+  annotations_dir: ../hagrid_raw/annotations_light
+  subset_dir: data/subset
+  classes:
+    - call
+    - dislike
+    - fist
+    - four
+    - like
+    - mute
+    - ok
+    - one
+    - palm
+    - peace
+    - peace_inverted
+    - rock
+    - stop
+    - stop_inverted
+    - three
+    - three2
+    - two_up
+    - two_up_inverted
+    - no_gesture
