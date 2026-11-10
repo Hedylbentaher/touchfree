@@ -1,3 +1,6 @@
+# Tous les reglages du projet TouchFree, au meme endroit.
+# Les scripts lisent ce fichier : on change un chiffre ici, jamais dans le code.
+
 data:
   seed: 42
   min_side: 512
@@ -5,6 +8,7 @@ data:
   per_class: {train: 300, val: 60, test: 60}
   annotations_dir: ../hagrid_raw/annotations_light
   subset_dir: data/subset
+  # L'ordre donne les numeros de classe (call = 0, ...). Ne jamais le changer.
   classes:
     - call
     - dislike
@@ -25,3 +29,46 @@ data:
     - two_up
     - two_up_inverted
     - no_gesture
+
+train:
+  yolo:
+    model: yolo11n.pt # poids pre-entraines COCO (transfer learning)
+    epochs: 50
+    imgsz: 512
+    batch: 32
+    patience: 15 # arret anticipe si la val ne progresse plus
+    seed: 42
+    lr0: 0.01
+    augment:
+      fliplr: 0.5 # miroir horizontal : un geste reste le meme
+      flipud: 0.0 # INTERDIT : peace devient peace_inverted
+      degrees: 5.0 # petite rotation seulement
+      translate: 0.1
+      scale: 0.5
+      hsv_h: 0.015
+      hsv_s: 0.7
+      hsv_v: 0.4
+      mosaic: 1.0
+      close_mosaic: 10
+  frcnn:
+    epochs: 8
+    batch: 8
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+    min_size: 512
+    seed: 42
+
+export:
+  imgsz: 512
+  calib_images: 200 # images de calibration pour INT8
+  latency_runs: 100
+
+gate:
+  model_name: touchfree-detector
+  min_map50_95: 0.40 # en dessous, le modele est refuse
+  max_latency_ms: 250 # latence CPU maximale acceptee
+  max_int8_drop: 0.02 # perte de mAP toleree pour servir l'INT8
+
+mlflow:
+  experiment: touchfree
