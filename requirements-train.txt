@@ -1,0 +1,8 @@
+# Entrainement et export (Google Colab, GPU). PyTorch est deja installe sur Colab.
+ultralytics>=8.3.0
+mlflow>=2.14,<3  # compatible avec le serveur MLflow de DagsHub
+onnx>=1.16
+onnxruntime>=1.18
+onnxslim
+torchmetrics>=1.4
+pycocotools
