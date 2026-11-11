@@ -1,0 +1,10 @@
+name: Lecteur video (VLC, YouTube)
+confirm_frames: 5
+cooldown_s: 1.0
+lock_gesture: stop
+actions:
+  palm: {keys: [space], description: Lecture / pause}
+  like: {keys: [volumeup], description: Monter le son}
+  dislike: {keys: [volumedown], description: Baisser le son}
+  mute: {keys: [volumemute], description: Couper le son}
+  one: {keys: [right], description: Avancer de 10 s}
