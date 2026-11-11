@@ -1,0 +1,24 @@
+# Lancement complet en une commande :  docker compose up --build
+# Prerequis : le modele dans ./models (dvc pull models.dvc)
+services:
+  backend:
+    build: ./backend
+    image: touchfree-backend:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/models:ro # le modele n'est pas dans l'image : il vient de DVC
+    environment:
+      CONF_THRESHOLD: "0.35"
+      IOU_THRESHOLD: "0.5"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    image: touchfree-frontend:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
