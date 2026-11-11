@@ -1,0 +1,10 @@
+# Fins de ligne : toujours LF (Docker, CI Linux), quel que soit le système
+* text=auto eol=lf
+
+# Fichiers binaires : jamais convertis
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.onnx binary
+*.pt binary
+*.zip binary
