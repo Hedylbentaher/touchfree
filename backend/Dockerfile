@@ -1,9 +1,12 @@
 # ---------- Etape 1 : construction des dependances ----------
 FROM python:3.10-slim AS builder
+# Connexion lente : delai de 120 s et 10 essais par telechargement.
+ENV PIP_DEFAULT_TIMEOUT=120 \
+    PIP_RETRIES=10 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /build
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.txt
+RUN pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.txt
 
 # ---------- Etape 2 : image finale, legere ----------
 FROM python:3.10-slim AS runtime
