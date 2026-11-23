@@ -1,0 +1,10 @@
+name: Presentation (PowerPoint, Google Slides, PDF)
+confirm_frames: 5 # ~0,5 s a 10 images/s
+cooldown_s: 1.0
+lock_gesture: stop # « stop » active / coupe le controle
+actions:
+  like: {keys: [right], description: Diapositive suivante}
+  dislike: {keys: [left], description: Diapositive precedente}
+  two_up: {keys: [ctrl, "+"], description: Zoom avant}
+  two_up_inverted: {keys: [ctrl, "-"], description: Zoom arriere}
+  fist: {keys: [esc], description: Quitter le diaporama}

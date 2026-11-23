@@ -22,10 +22,10 @@ jobs:
         run: pip install black flake8
 
       - name: Vérifier la mise en forme (black)
-        run: black --check src backend scripts
+        run: black --check src backend scripts agent
 
       - name: Vérifier le style (flake8)
-        run: flake8 src backend scripts
+        run: flake8 src backend scripts agent
 
   tests:
     name: Tests Pytest (API)
@@ -44,7 +44,7 @@ jobs:
         run: pip install -r backend/requirements-dev.txt
 
       - name: Lancer les tests
-        run: pytest backend/tests -v
+        run: pytest backend/tests agent/tests -v
 
   frontend:
     name: Interface React (ESLint + build)
